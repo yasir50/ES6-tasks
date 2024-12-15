@@ -10,7 +10,7 @@ function testFunctionScope() {
   let funcLet = "Function Let";
   const funcConst = "Function Const";
 }
-console.log(funcVar, typeof funcLet, typeof funcConst); // ReferenceError for funcLet and funcConst
+console.log(funcVar, funcLet, funcConst); // ReferenceError for funcLet and funcConst
 
 // Block Scope
 if (true) {
@@ -18,8 +18,8 @@ if (true) {
   let blockLet = "Block Let";
   const blockConst = "Block Const";
 }
-console.log(blockVar); // Accessible (var ignores block scope)
-console.log(typeof blockLet, typeof blockConst); // ReferenceError
+console.log(blockVar);
+console.log(blockLet, blockConst); // ReferenceError
 
 // Hoisting with var
 console.log(hoistedVar); // undefined
@@ -116,14 +116,10 @@ console.log(`<ul>${items.map((item) => `<li>${item}</li>`).join("")}</ul>`);
 console.log(`This is a \`backtick\``);
 
 // Nested Template Literals
-const table = `<table>${[...Array(3)]
-  .map(
-    (_, row) =>
-      `<tr>${[...Array(3)]
-        .map((_, cell) => `<td>R${row}C${cell}</td>`)
-        .join("")}</tr>`
-  )
-  .join("")}</table>`;
+const table = `<table>${[...Array(3)].map(
+  (_, row) =>
+    `<tr>${[...Array(3)].map((_, cell) => `<td>R${row}C${cell}</td>`)}</tr>`
+)}</table>`;
 console.log(table);
 
 // Simple Condition
@@ -155,76 +151,3 @@ const isLoggedIn = true;
 const statusMessage = isLoggedIn ? "Welcome back!" : "Please log in";
 console.log(statusMessage);
 
-// Discount Eligibility
-const isMember = true;
-const purchaseAmount = 150;
-const discount = isMember && purchaseAmount > 100 ? purchaseAmount * 0.1 : 0;
-console.log(`Discount: ${discount}`);
-
-// Determine Max Value
-const maxValue = (a, b) => (a > b ? a : b);
-console.log(`Max: ${maxValue(5, 10)}`);
-
-// Greeting Message
-const greet = (name = "guest") => `Hello, ${name}!`;
-console.log(greet("John"));
-console.log(greet());
-
-// Mapping Values
-const numbers = [1, 2, 3, 4, 5];
-const mapped = numbers.map((num) => (num % 2 === 0 ? num * 2 : num * 3));
-console.log(mapped);
-
-// Filtering Values
-const strings = ["a", "ab", "abc", "abcd"];
-const filtered = strings.filter((str) => str.length > 3);
-console.log(filtered);
-
-// Copying an Array
-const originalArray = [1, 2, 3];
-const copiedArray = [...originalArray];
-console.log(copiedArray);
-
-// Merging Arrays
-const array1 = [1, 2];
-const array2 = [3, 4];
-const mergedArray = [...array1, ...array2];
-console.log(mergedArray);
-
-// Adding Elements to an Array
-const nums = [2, 3, 4];
-const updatedNums = [1, ...nums, 5];
-console.log(updatedNums);
-
-// Copying an Object
-const originalObject = { a: 1, b: 2 };
-const copiedObject = { ...originalObject };
-console.log(copiedObject);
-
-// Merging Objects
-const object1 = { a: 1, b: 2 };
-const object2 = { b: 3, c: 4 };
-const mergedObject = { ...object1, ...object2 };
-console.log(mergedObject);
-
-// Updating Object Properties
-const user = { name: "John", age: 25, email: "john@example.com" };
-const updatedUser = {
-  ...user,
-  email: "john.doe@example.com",
-  address: "1234 Elm St",
-};
-console.log(updatedUser);
-
-// Passing Array Elements as Arguments
-const sum = (a, b, c) => a + b + c;
-const numsToSum = [1, 2, 3];
-console.log(sum(...numsToSum));
-
-// Combining Multiple Arrays
-const combineArrays = (...arrays) => arrays.flat();
-console.log(combineArrays([1, 2], [3, 4], [5, 6]));
-
-// Rest Parameter with Spread Operator
-const multiply = (num, ...args) => args.map((arg) => arg * num);
-console.log(multiply(2, 1, 2, 3));
